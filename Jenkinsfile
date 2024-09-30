@@ -52,6 +52,7 @@ pipeline {
                 // Clean up: Stop and remove the container
 //                sh 'docker stop ${appName}-container || true'
 //                sh 'docker rm ${appName}-container || true'
+                sh "echo 'Running app!!!!'"
             }
             echo 'Pipeline completed.'
         }
