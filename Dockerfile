@@ -1,15 +1,13 @@
-FROM python:3.8-slim
+FROM ubuntu:20.04
 
-RUN apt-get update && apt-get install -y gcc libpq-dev postgresql postgresql-contrib && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y python3 python3-pip python3-venv postgresql postgresql-contrib curl sudo
+RUN service postgresql start && sudo -u postgres psql -c "CREATE USER user WITH PASSWORD 'a1a1a1';" && sudo -u postgres psql -c "CREATE DATABASE DB OWNER user;"
 
 WORKDIR /app
 
 COPY . .
-                                  
-RUN pip3 install --no-cache-dir -r ./requirements.txt
-RUN ls -alh /var/run/postgresql/
-RUN service postgresql start
-RUN createdb followspot
+RUN python3 -m venv venv && ./venv/bin/pip install --no-cache-dir -r requirements.txt                                  
+
 RUN python3 seed.py
 
 ENV POSTGRES_USER=user
