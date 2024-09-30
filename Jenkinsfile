@@ -1,8 +1,10 @@
 @Library("my-shared-library") _
 pipeline {
-  docker {
-    image "maven:3.6.0-jdk-13"
-    label "docker"
+  agent{
+    docker {
+      image "maven:3.6.0-jdk-13"
+      label "docker"
+    }
   }
 
   tools {
