@@ -12,7 +12,7 @@ WORKDIR /app
 COPY . .
                                   
 RUN pip3 install --no-cache-dir -r ./requirements.txt
-run ls -alh /var/
+run ls -alh /var/run/postgresql/
 RUN createdb followspot
 RUN python3 seed.py
 
