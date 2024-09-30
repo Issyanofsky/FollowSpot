@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git credentialsId: 'github-creds', url: 'https://github.com/your-repo/your-project.git'
+                git credentialsId: 'github-creds', url: 'https://github.com/Issyanofsky/FollowSpot.git'
             }
         }
 
