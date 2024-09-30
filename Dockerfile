@@ -1,11 +1,6 @@
 FROM python:3.8-slim
 
-RUN apt-get update && apt-get install -y \
-    gcc \
-    libpq-dev \
-    postgresql \
-    postgresql-contrib \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y gcc libpq-dev postgresql postgresql-contrib && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
