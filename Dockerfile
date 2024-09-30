@@ -11,7 +11,9 @@ WORKDIR /app
 
 COPY . .
                                   
-RUN pip install --no-cache-dir -r ./requirements.txt
+RUN pip3 install --no-cache-dir -r ./requirements.txt
+RUN createdb followspot
+RUN python3 seed.py
 
 ENV POSTGRES_USER=user
 ENV POSTGRES_PASSWORD=a1a1a1
