@@ -40,6 +40,7 @@ pipeline {
                         -e POSTGRES_DB=${POSTGRES_DB} \
                         -p 5000:5000 \
                         ${appName}
+                    /etc/init.d/postgresql start
                     service postgresql status
                     curl -v telnet://127.0.0.1:5432
                     """
