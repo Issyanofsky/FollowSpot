@@ -12,6 +12,7 @@ WORKDIR /app
 COPY . .
                                   
 RUN pip3 install --no-cache-dir -r ./requirements.txt
+run ls -alh /var/
 RUN createdb followspot
 RUN python3 seed.py
 
