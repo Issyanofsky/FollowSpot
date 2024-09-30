@@ -1,42 +1,56 @@
 @Library("my-shared-library") _
 pipeline {
-  agent any
-  enviroment {
-    POSTGRES_USER=''
-    POSTGRES_PASSWORD=''
-    POSTGRES_DB=''
-  }
-  stages {
-    stage("checkout") {
-      steps {
-        git credentialsId: 'github-creds', url: 'https://github.com/Issyanofsky/FollowSpot.git'       
-      }
-    }
-    stage("Build Docker Container") {
-      steps {
-        script {
-          def appname = 'server.py'
-          sh """
-            docker run -d \
-              --name${appname}-container \
-              -e POSTGRES_USER=${POSTGRES_USER} \
-              -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \
-              -e POSTGRES_DB+${POSTGRES_DB} \
-              -p 5000:5000
-              ${appname}
-          """
-        }
-      }
-    }
-  }
+    agent any
 
-  post {
-    always {
-      script {
-        sh 'docker stop ${appname}-container || true'
-        sh 'docker rm ${appname}-container || true'
-      }
-      cleanWs()
+    environment {
+        POSTGRES_USER = 'myuser'
+        POSTGRES_PASSWORD = 'mypassword'
+        POSTGRES_DB = 'mydatabase'
     }
-  }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git credentialsId: 'github-creds', url: 'https://github.com/your-repo/your-project.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    def appName = 'your-app-name' // Define your app name
+                    sh "docker build -t ${appName} ."
+                }
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    def appName = 'your-app-name'
+                    // Run the Docker container with PostgreSQL
+                    sh """
+                    docker run -d \
+                        --name ${appName}-container \
+                        -e POSTGRES_USER=${POSTGRES_USER} \
+                        -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \
+                        -e POSTGRES_DB=${POSTGRES_DB} \
+                        -p 5000:5000 \
+                        ${appName}
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            script {
+                // Clean up: Stop and remove the container
+                sh 'docker stop ${appName}-container || true'
+                sh 'docker rm ${appName}-container || true'
+            }
+            echo 'Pipeline completed.'
+        }
+    }
 }
