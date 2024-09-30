@@ -24,6 +24,7 @@ pipeline {
                     def appName = 'followspot' // Define your app name
                     sh "docker build -t ${appName} ."
                 }
+                cleanWs()
             }
         }
 
