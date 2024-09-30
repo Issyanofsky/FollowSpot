@@ -3,9 +3,9 @@ pipeline {
     agent any
 
     environment {
-        POSTGRES_USER = 'myuser'
-        POSTGRES_PASSWORD = 'mypassword'
-        POSTGRES_DB = 'mydatabase'
+        POSTGRES_USER = 'user'
+        POSTGRES_PASSWORD = 'a1a1a1'
+        POSTGRES_DB = 'DB'
     }
 
     stages {
@@ -18,7 +18,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def appName = 'your-app-name' // Define your app name
+                    def appName = 'server.py' // Define your app name
                     sh "docker build -t ${appName} ."
                 }
             }
@@ -27,7 +27,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    def appName = 'your-app-name'
+                    def appName = 'server.py'
                     // Run the Docker container with PostgreSQL
                     sh """
                     docker run -d \
