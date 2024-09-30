@@ -1,6 +1,9 @@
 @Library("my-shared-library") _
 pipeline {
-    agent any
+    agent {
+      label 'docker-slave'
+    }
+
 
     environment {
         POSTGRES_USER = 'user'
