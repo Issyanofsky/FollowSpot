@@ -21,7 +21,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def appName = 'server.py' // Define your app name
+                    def appName = 'followspot' // Define your app name
                     sh "docker build -t ${appName} ."
                 }
             }
@@ -30,7 +30,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    def appName = 'server.py'
+                    def appName = 'followspot'
                     // Run the Docker container with PostgreSQL
                     sh """
                     docker run -d \
