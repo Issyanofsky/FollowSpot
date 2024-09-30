@@ -50,8 +50,8 @@ pipeline {
         always {
             script {
                 // Clean up: Stop and remove the container
-                sh 'docker stop ${appName}-container || true'
-                sh 'docker rm ${appName}-container || true'
+//                sh 'docker stop ${appName}-container || true'
+//                sh 'docker rm ${appName}-container || true'
             }
             echo 'Pipeline completed.'
         }
