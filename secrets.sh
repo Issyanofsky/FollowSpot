@@ -1,1 +1,6 @@
-
+export cloud_name="ecyanofsky@gmail.com"
+export cloud_api_key="192914469849458"
+export cloud_api_secret="9Due8OyX4DgrTHT-qt1YMhosZeA"
+export twilio_account_sid="create your own twilio account and enter your sid here"
+export twilio_auth_token="enter your twilio auth token here"
+export twilio_number="+15555555555 enter your assigned twilio # with the +1 format before 10 digit #"
