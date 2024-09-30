@@ -3,12 +3,12 @@ FROM python:3
 WORKDIR /app
 
 COPY . .
+                                  
+RUN pip install --no-cache-dir -r ./requirements.txt
 
-RUN pip install --no-cache-dir -r requierments.txt
-
-ENV POSTGRES_USER=
-ENV POSTGRES_PASSWORD=
-ENV POSTGRES_DB=
+ENV POSTGRES_USER=user
+ENV POSTGRES_PASSWORD=a1a1a1
+ENV POSTGRES_DB=DB
 
 EXPOSE 5000
 
