@@ -1,4 +1,4 @@
-@Library("my-shared-library")
+@Library("my-shared-library") _
 pipeline {
   docker {
     image "maven:3.6.0-jdk-13"
