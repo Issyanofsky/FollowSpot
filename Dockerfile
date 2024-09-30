@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
 RUN apt-get update && apt-get install -y python3 python3-pip python3-venv postgresql postgresql-contrib curl sudo
-RUN service postgresql start && sudo -u postgres psql -c "CREATE USER user WITH PASSWORD 'a1a1a1';" && sudo -u postgres psql -c "CREATE DATABASE DB OWNER user;"
+RUN service postgresql start && sudo -u postgres psql -c "CREATE USER 'user' WITH PASSWORD 'a1a1a1';" && sudo -u postgres psql -c "CREATE DATABASE 'DB' OWNER 'user';"
 
 WORKDIR /app
 
